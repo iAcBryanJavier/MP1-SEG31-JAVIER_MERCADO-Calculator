@@ -8,6 +8,8 @@ public class CalculatorBean implements Serializable{
 	String operation;
 	String operationMessage;
 	boolean divByZero;
+	boolean operationNull;
+	boolean invalidOperation;
 	
 	
 	public boolean isDivByZero() {
@@ -15,6 +17,18 @@ public class CalculatorBean implements Serializable{
 	}
 	public void setDivByZero(boolean divByZero) {
 		this.divByZero = divByZero;
+	}
+	public boolean isOperationNull(){
+		return operationNull;
+	}
+	public void setOperationNull(boolean operationNull){
+		this.operationNull = operationNull;
+	}
+	public boolean isInvalidOperation(){
+		return invalidOperation;
+	}
+	public void setInvalidOperation(boolean invalidOp){
+		this.invalidOperation = invalidOp;
 	}
 	public String getOperationMessage() {
 		return operationMessage;
@@ -48,7 +62,6 @@ public class CalculatorBean implements Serializable{
 	}
 	
 	public void answerString() {
-		double answer = 0;
 		switch(operation) {
 		case "*":
 			setAnswer(getNum1() * getNum2());
@@ -74,6 +87,14 @@ public class CalculatorBean implements Serializable{
 			setAnswer(getNum1() - getNum2());
 			setOperation("subtraction");
 			setOperationMessage("Subtracting ");
+			break;
+			
+		case "":
+			setOperationNull(true);
+			break;
+		
+		default: 
+			setInvalidOperation(true);
 			break;
 		}
 		
