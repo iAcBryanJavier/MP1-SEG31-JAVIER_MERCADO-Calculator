@@ -7,9 +7,15 @@ public class CalculatorBean implements Serializable{
 	double answer;
 	String operation;
 	String operationMessage;
+	boolean divByZero;
 	
 	
-	
+	public boolean isDivByZero() {
+		return divByZero;
+	}
+	public void setDivByZero(boolean divByZero) {
+		this.divByZero = divByZero;
+	}
 	public String getOperationMessage() {
 		return operationMessage;
 	}
@@ -55,9 +61,14 @@ public class CalculatorBean implements Serializable{
 			setOperationMessage("Adding ");
 			break;
 		case "/":
-			setAnswer(getNum1() / getNum2());
-			setOperation("division");
-			setOperationMessage("Dividing ");
+			if(getNum1() == 0 || getNum2() == 0) {
+				setDivByZero(true);
+			}else {
+				setAnswer(getNum1() / getNum2());
+				setOperation("division");
+				setOperationMessage("Dividing ");
+			}
+	
 			break;
 		case "-":
 			setAnswer(getNum1() - getNum2());

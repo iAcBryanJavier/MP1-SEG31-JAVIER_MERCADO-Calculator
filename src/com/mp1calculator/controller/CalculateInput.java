@@ -42,18 +42,32 @@ public class CalculateInput extends HttpServlet {
 				+ "	<div class=\"card-body\">\r\n"
 				+ "		<h3 class=\"card-title text-center\">MP1 Calculator</h3>\r\n"
 				+ "		<div class=\"card-text\">");
-		out.print("		<p><b>The selected mathematical operation is "+ calculator.getOperation() +"</b></p>");
-		out.print("		<p>" + calculator.getOperationMessage()+ "<b>"+ calculator.getNum1() +"</b> by <b>"+ calculator.getNum2() +"</b> is "+ calculator.getAnswer() +"</p>");
-		out.print("		<p><b>Thank you very much for using the system.</b></p>");
-		out.print("		<form action='index.html'>");
-		out.print("			<input type='submit' class=\"btn btn-primary btn-block\" value='GO BACK'/>");
-		out.print("		</form></div>\r\n"
-				+ "	</div>\r\n"
-				+ "</div>\r\n"
-				+ "</div>");
-		out.print("		<hr/>");
-		out.print("	</body>");
-		out.print("</html>");
+		if(calculator.isDivByZero()) {
+			out.print("	<p><b> Division by zero is prohibited, try again! </b></p>");
+			out.print("		<form action='index.html'>");
+			out.print("			<input type='submit' class=\"btn btn-primary btn-block\" value='TRY AGAIN'/>");
+			out.print("		</form></div>\r\n"
+					+ "	</div>\r\n"
+					+ "</div>\r\n"
+					+ "</div>");
+			out.print("		<hr/>");
+			out.print("	</body>");
+			out.print("</html>");
+		}else {
+			out.print("		<p><b>The selected mathematical operation is "+ calculator.getOperation() +"</b></p>");
+			out.print("		<p>" + calculator.getOperationMessage()+ "<b>"+ calculator.getNum1() +"</b> by <b>"+ calculator.getNum2() +"</b> is "+ calculator.getAnswer() +"</p>");
+			out.print("		<p><b>Thank you very much for using the system.</b></p>");
+			out.print("		<form action='index.html'>");
+			out.print("			<input type='submit' class=\"btn btn-primary btn-block\" value='GO BACK'/>");
+			out.print("		</form></div>\r\n"
+					+ "	</div>\r\n"
+					+ "</div>\r\n"
+					+ "</div>");
+			out.print("		<hr/>");
+			out.print("	</body>");
+			out.print("</html>");
+		}
+	
 		
 		out.close();
 		
